@@ -35,9 +35,11 @@ PLOTLY_TEMPLATE = dict(
     plot_bgcolor="rgba(0,0,0,0)",
     font=dict(family="DM Sans, Calibri, sans-serif", color=TEXT_DARK, size=12),
     colorway=[MID_GREEN, GOLD, SOFT_GREEN, AMBER, DEEP_GREEN, EMERALD, ORANGE],
-    xaxis=dict(gridcolor="#E8E4DC", showline=False),
-    yaxis=dict(gridcolor="#E8E4DC", showline=False),
     margin=dict(l=10, r=10, t=40, b=10),
+    xaxis_gridcolor="#E8E4DC",
+    yaxis_gridcolor="#E8E4DC",
+    xaxis_showline=False,
+    yaxis_showline=False,
 )
 
 SCORE_COLORS = {
@@ -733,6 +735,6 @@ st.markdown(f"""
     Market benchmark figures represent estimated total regional market based on network capture rate analysis.
     <br><br>
     © 2025 Aduru Analytics · <a href="https://phytorx-africa.streamlit.app" style="color:{MID_GREEN}">
-    aduru-medrep.streamlit.app</a>
+    phytorx-africa.streamlit.app</a>
 </div>
 """, unsafe_allow_html=True)
