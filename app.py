@@ -31,9 +31,9 @@ EMERALD     = "#1E8449"
 TEXT_DARK   = "#1A1A18"
 TEXT_LIGHT  = "#6B6B60"
 BRANCH_COLORS = {
-    "Madina":     MID_GREEN,
-    "Ghana Flag": GOLD,
-    "Oyarifa":    ORANGE,
+    "Branch A": MID_GREEN,
+    "Branch B": GOLD,
+    "Branch C": ORANGE,
 }
 
 PLOTLY_TEMPLATE = dict(
@@ -84,9 +84,9 @@ html,body,[class*="css"]{{font-family:'DM Sans',sans-serif;background:{CREAM};co
     margin:1.5rem 0 0.6rem 0;padding-bottom:0.3rem;border-bottom:2px solid {GOLD};display:inline-block;}}
 .branch-chip{{display:inline-block;padding:3px 12px;border-radius:20px;font-size:0.78rem;
     font-weight:600;margin:2px 3px;}}
-.branch-madina{{background:#e8f4ee;color:{MID_GREEN};border:1px solid {MID_GREEN};}}
-.branch-flag{{background:#fdf5e3;color:#8a6f00;border:1px solid {GOLD};}}
-.branch-oyarifa{{background:#fdf0e9;color:{ORANGE};border:1px solid {ORANGE};}}
+.branch-a{{background:#e8f4ee;color:{MID_GREEN};border:1px solid {MID_GREEN};}}
+.branch-b{{background:#fdf5e3;color:#8a6f00;border:1px solid {GOLD};}}
+.branch-c{{background:#fdf0e9;color:{ORANGE};border:1px solid {ORANGE};}}
 .opp-high{{background:#eafaf1;color:{EMERALD};border:1px solid {EMERALD};}}
 .opp-medium{{background:#fefbe6;color:{AMBER};border:1px solid {AMBER};}}
 .opp-low{{background:#fdecea;color:{RED};border:1px solid {RED};}}
@@ -142,6 +142,7 @@ div[data-testid="stExpander"]{{border:1px solid #DDD8CC!important;border-radius:
 
 # ── Load branch data ──────────────────────────────────────────────────────
 BRANCH_DF = load_branch_data()
+BRANCH_DF["branch"] = BRANCH_DF["branch"].map({"Madina": "Branch A", "Ghana Flag": "Branch B", "Oyarifa": "Branch C"})
 
 # ── Sidebar ───────────────────────────────────────────────────────────────
 with st.sidebar:
@@ -173,7 +174,7 @@ with st.sidebar:
     st.markdown(f"""
     <div style="font-size:0.72rem;color:rgba(245,240,232,0.45);line-height:1.7">
         <strong style="color:rgba(245,240,232,0.7)">Network:</strong><br>
-        Madina · Ghana Flag · Oyarifa<br>
+        Branch A · Branch B · Branch C<br>
         Greater Accra, Ghana<br><br>
         <strong style="color:rgba(245,240,232,0.7)">Data:</strong><br>
         {REAL_STATS['total_units']:,} units · 12 months<br>
@@ -596,9 +597,9 @@ elif view == "🏪 Branch Comparison":
                 unsafe_allow_html=True)
     st.markdown("""
     <div style="margin-bottom:1rem">
-        <span class="branch-chip branch-madina">● Madina</span>
-        <span class="branch-chip branch-flag">● Ghana Flag</span>
-        <span class="branch-chip branch-oyarifa">● Oyarifa</span>
+        <span class="branch-chip branch-a">● Branch A</span>
+        <span class="branch-chip branch-b">● Branch B</span>
+        <span class="branch-chip branch-c">● Branch C</span>
         <span style="font-size:0.8rem;color:#6B6B60;margin-left:0.5rem">
             Live dispensing data · Greater Accra network
         </span>
@@ -613,8 +614,8 @@ elif view == "🏪 Branch Comparison":
              brand_share=("brand_share","mean"))
         .reset_index()
     )
-    cols_map = {"Madina": b1, "Ghana Flag": b2, "Oyarifa": b3}
-    color_map = {"Madina": "", "Ghana Flag": "gold", "Oyarifa": "amber"}
+    cols_map = {"Branch A": b1, "Branch B": b2, "Branch C": b3}
+    color_map = {"Branch A": "", "Branch B": "gold", "Branch C": "amber"}
     for _, row in branch_totals.iterrows():
         with cols_map.get(row["branch"], b1):
             st.markdown(f"""
@@ -718,7 +719,7 @@ elif view == "🏪 Branch Comparison":
     with col_bg2:
         st.markdown('<div class="section-hdr">Top Drug per Branch</div>',
                     unsafe_allow_html=True)
-        for branch in ["Madina", "Ghana Flag", "Oyarifa"]:
+        for branch in ["Branch A", "Branch B", "Branch C"]:
             sub = bdf[bdf["branch"] == branch]
             if sub.empty: continue
             top = sub.groupby("drug")["units_network"].sum().idxmax()
