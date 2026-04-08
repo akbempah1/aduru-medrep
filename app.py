@@ -31,15 +31,13 @@ TEXT_DARK   = "#1A1A18"
 TEXT_LIGHT  = "#6B6B60"
 
 PLOTLY_TEMPLATE = dict(
-    layout=dict(
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)",
-        font=dict(family="DM Sans, Calibri, sans-serif", color=TEXT_DARK, size=12),
-        colorway=[MID_GREEN, GOLD, SOFT_GREEN, AMBER, DEEP_GREEN, EMERALD, ORANGE],
-        xaxis=dict(gridcolor="#E8E4DC", showline=False),
-        yaxis=dict(gridcolor="#E8E4DC", showline=False),
-        margin=dict(l=10, r=10, t=40, b=10),
-    )
+    paper_bgcolor="rgba(0,0,0,0)",
+    plot_bgcolor="rgba(0,0,0,0)",
+    font=dict(family="DM Sans, Calibri, sans-serif", color=TEXT_DARK, size=12),
+    colorway=[MID_GREEN, GOLD, SOFT_GREEN, AMBER, DEEP_GREEN, EMERALD, ORANGE],
+    xaxis=dict(gridcolor="#E8E4DC", showline=False),
+    yaxis=dict(gridcolor="#E8E4DC", showline=False),
+    margin=dict(l=10, r=10, t=40, b=10),
 )
 
 SCORE_COLORS = {
@@ -387,7 +385,7 @@ if view == "Territory Overview":
         textposition="outside",
     ))
     fig_bar.update_layout(
-        **PLOTLY_TEMPLATE["layout"],
+        **PLOTLY_TEMPLATE,
         height=320,
         xaxis_title="Units dispensed (YTD)",
         yaxis_title="",
@@ -413,7 +411,7 @@ elif view == "Trend Analysis":
         color_discrete_sequence=[MID_GREEN, GOLD, SOFT_GREEN, AMBER, DEEP_GREEN, EMERALD, ORANGE],
     )
     fig_trend.update_layout(
-        **PLOTLY_TEMPLATE["layout"],
+        **PLOTLY_TEMPLATE,
         height=380,
         xaxis_title="Month",
         yaxis_title="Units dispensed",
@@ -441,7 +439,7 @@ elif view == "Trend Analysis":
         name="Our network", marker_color=MID_GREEN,
     ))
     fig_mkt.update_layout(
-        **PLOTLY_TEMPLATE["layout"],
+        **PLOTLY_TEMPLATE,
         barmode="overlay",
         height=320,
         xaxis_title="Month",
@@ -469,7 +467,7 @@ elif view == "Trend Analysis":
         hoverongaps=False,
     ))
     fig_heat.update_layout(
-        **PLOTLY_TEMPLATE["layout"],
+        **PLOTLY_TEMPLATE,
         height=280,
         xaxis_title="Month",
         yaxis_title="",
@@ -507,7 +505,7 @@ elif view == "Brand vs Generic":
         textposition="inside", textfont=dict(color=TEXT_LIGHT),
     ))
     fig_bg.update_layout(
-        **PLOTLY_TEMPLATE["layout"],
+        **PLOTLY_TEMPLATE,
         barmode="stack",
         height=340,
         xaxis_title="Share (%)",
@@ -542,7 +540,7 @@ elif view == "Brand vs Generic":
         annotation_position="top right",
     )
     fig_bs.update_layout(
-        **PLOTLY_TEMPLATE["layout"],
+        **PLOTLY_TEMPLATE,
         height=300,
         yaxis_title="Brand share (%)",
         xaxis_title="Month",
@@ -573,7 +571,7 @@ elif view == "Opportunity Scores":
         textposition="outside",
     ))
     fig_opp.update_layout(
-        **PLOTLY_TEMPLATE["layout"],
+        **PLOTLY_TEMPLATE,
         height=320,
         xaxis=dict(range=[0, 115], title="Opportunity Score (0–100)"),
         yaxis_title="",
@@ -708,7 +706,7 @@ elif view == "Rep Planner":
         annotation_font_color=GOLD,
     )
     fig_curve.update_layout(
-        **PLOTLY_TEMPLATE["layout"],
+        **PLOTLY_TEMPLATE,
         height=260,
         xaxis_title="Rep visits per month",
         yaxis_title="Expected dispensing uplift (%)",
@@ -735,6 +733,6 @@ st.markdown(f"""
     Market benchmark figures represent estimated total regional market based on network capture rate analysis.
     <br><br>
     © 2025 Aduru Analytics · <a href="https://phytorx-africa.streamlit.app" style="color:{MID_GREEN}">
-    phytorx-africa.streamlit.app</a>
+    aduru-medrep.streamlit.app</a>
 </div>
 """, unsafe_allow_html=True)
