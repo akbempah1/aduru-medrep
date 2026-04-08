@@ -99,9 +99,41 @@ html,body,[class*="css"]{{font-family:'DM Sans',sans-serif;background:{CREAM};co
 .insight-box .body{{font-size:0.9rem;color:{CREAM};line-height:1.5;}}
 [data-testid="stSidebar"]{{background:{DEEP_GREEN}!important;}}
 [data-testid="stSidebar"] *{{color:{CREAM}!important;}}
-[data-testid="stSidebar"] .stSelectbox label,[data-testid="stSidebar"] .stRadio label{{
+[data-testid="stSidebar"] .stSelectbox label,
+[data-testid="stSidebar"] .stRadio label{{
     color:{GOLD_LIGHT}!important;font-size:0.72rem!important;font-weight:600!important;
     letter-spacing:1px!important;text-transform:uppercase!important;}}
+[data-testid="stSidebar"] .stSelectbox > div > div{{
+    background:rgba(255,255,255,0.08)!important;
+    border:1px solid rgba(200,168,75,0.35)!important;
+    color:{CREAM}!important;}}
+[data-testid="stSidebar"] .stRadio > div{{gap:0.3rem!important;}}
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label{{
+    background:rgba(255,255,255,0.06)!important;
+    border:1px solid rgba(255,255,255,0.12)!important;
+    border-radius:6px!important;
+    padding:0.35rem 0.6rem!important;
+    margin:0.15rem 0!important;
+    color:{CREAM}!important;
+    font-size:0.82rem!important;
+    font-weight:400!important;
+    letter-spacing:0!important;
+    text-transform:none!important;
+    width:100%!important;
+    cursor:pointer!important;
+    transition:background 0.15s!important;}}
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label:hover{{
+    background:rgba(200,168,75,0.15)!important;
+    border-color:rgba(200,168,75,0.5)!important;}}
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label[data-checked="true"],
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label:has(input:checked){{
+    background:rgba(200,168,75,0.2)!important;
+    border-color:{GOLD}!important;
+    color:{GOLD_LIGHT}!important;
+    font-weight:600!important;}}
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] span[data-testid="stMarkdownContainer"]{{
+    color:{CREAM}!important;font-size:0.82rem!important;}}
+[data-testid="stSidebar"] input[type="radio"]{{accent-color:{GOLD}!important;}}
 .stButton>button{{background:{MID_GREEN}!important;color:{CREAM}!important;
     border:none!important;border-radius:8px!important;font-weight:600!important;}}
 div[data-testid="stExpander"]{{border:1px solid #DDD8CC!important;border-radius:8px!important;}}
