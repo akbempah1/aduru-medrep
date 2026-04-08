@@ -42,11 +42,13 @@ PLOTLY_TEMPLATE = dict(
     font=dict(family="DM Sans, Calibri, sans-serif", color=TEXT_DARK, size=12),
     colorway=[MID_GREEN, GOLD, SOFT_GREEN, AMBER, DEEP_GREEN, EMERALD, ORANGE],
     margin=dict(l=10, r=10, t=40, b=10),
-    xaxis_gridcolor="#E8E4DC",
-    yaxis_gridcolor="#E8E4DC",
-    xaxis_showline=False,
-    yaxis_showline=False,
 )
+
+# Apply grid styling per chart via this helper — avoids keyword conflicts
+def apply_grid(fig):
+    fig.update_xaxes(gridcolor="#E8E4DC", showline=False)
+    fig.update_yaxes(gridcolor="#E8E4DC", showline=False)
+    return fig
 
 def opp_tier(score):
     if score >= 65: return "High"
@@ -504,9 +506,9 @@ elif view == "🏆 Opportunity Scores":
             text=opp_display["opportunity_score"].apply(lambda x: f"{x:.0f}"),
             textposition="outside",
         ))
-        fig_opp.update_layout(**PLOTLY_TEMPLATE, height=340,
-                               xaxis=dict(range=[0,115], title="Opportunity Score (0–100)"),
-                               yaxis_title="")
+        fig_opp.update_layout(**PLOTLY_TEMPLATE, height=340, yaxis_title="")
+        fig_opp.update_xaxes(range=[0, 115], title_text="Opportunity Score (0–100)",
+                              gridcolor="#E8E4DC")
         st.plotly_chart(fig_opp, use_container_width=True)
 
     with col_table:
@@ -676,9 +678,9 @@ elif view == "🏪 Branch Comparison":
                 textposition="outside",
             ))
         fig_bsb.update_layout(**PLOTLY_TEMPLATE, height=280,
-                               yaxis=dict(range=[0, 100], title="Brand share (%)"),
-                               xaxis_title="", showlegend=False,
-                               yaxis_gridcolor="#E8E4DC")
+                               xaxis_title="", showlegend=False)
+        fig_bsb.update_yaxes(range=[0, 100], title_text="Brand share (%)",
+                              gridcolor="#E8E4DC")
         st.plotly_chart(fig_bsb, use_container_width=True)
 
     with col_bg2:
